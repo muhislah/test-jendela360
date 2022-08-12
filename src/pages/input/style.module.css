@@ -1,0 +1,38 @@
+.body {
+  position: absolute;
+  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+}
+.container {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding : 20px 50px;
+  text-align: center;
+}
+.close {
+  position: absolute;
+  top :20px;
+  right : 20px;
+  cursor: pointer;
+}
+input, select, textarea {
+  width: 400px;
+  height: 40px;
+  padding : 10px;
+  font-size: 0.9rem;
+}
+.tinyinput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.tinyinput label {
+  margin: 5px;
+  font-size: 0.9rem;
+}
