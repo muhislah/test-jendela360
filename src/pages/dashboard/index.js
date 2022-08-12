@@ -6,7 +6,7 @@ import Add from '../input'
 import { useSelector } from 'react-redux'
 
 const Dashboard = () => {
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState(null)
   let {orders : {orders}} = useSelector(state => state)
   const [modal, setModal] = useState(false)
   return (
@@ -16,34 +16,37 @@ const Dashboard = () => {
         <div className={style.background}>
           <img src={background} alt="" />
           <h1 className='fw-bold'>Dashboard</h1>
-          <p>List of all order</p>
         </div>
         <div className={style.table}>
           <p>List of All Order</p>
           <div>
             <Button onClick={() => setSelected('whatsapp')}>Whatsapp</Button>
-            <Button onClick={() => setSelected('whatsapp')}>Call</Button>
-            <Button onClick={() => setSelected('whatsapp')}>Email</Button>
+            <Button onClick={() => setSelected('call')}>Call</Button>
+            <Button onClick={() => setSelected('email')}>Email</Button>
+            <Button onClick={() => setSelected(null)}>Show All</Button>
           </div>
           <div>
             <table className='table mt-3'>
               <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>Sumber Pesanan</th>
-                  <th>Email</th>
-                  <th>Jumlah Roti</th>
-                  <th>Keterangan</th>
+                <tr className=''>
+                  <th className='col-1'>No</th>
+                  <th className='col-3'>Nama</th>
+                  <th className='col-2'>Sumber Pesanan</th>
+                  <th className='col-2'>Email</th>
+                  <th className='col-1'>Qty</th>
+                  <th className='col-3'>Keterangan</th>
                 </tr>
               </thead>
               <tbody>
                 {
                   orders?.length > 0 ? (
-                    selected ? (
-                      orders = orders.filter((data) => data.sumber === selected)
-                    ) : 
-                    orders.map((data,index) => {
+                    orders.filter((data) => {
+                      if ( selected !== null){
+                        return data.sumber === selected
+                      }else {
+                        return data
+                      }
+                    }).map((data,index) => {
                       return (
                         <tr>
                           <td>{index + 1}</td>
